@@ -1,101 +1,141 @@
-# 🌌 Python Module 09 — Cosmic Data  
-### Data Validation and Modeling with Pydantic
+# 🪐 Cosmic Data — Data Modeling with Pydantic v2
 
-**Author:** Bea  
-**Python Version:** 3.10+  
-**Standard:** flake8 compliant  
+A structured approach to **data validation and modeling** using  
+**Pydantic v2** and modern Python type hints.
 
----
+This project explores how to design models that:
 
-## 🎯 Project Overview
-
-Cosmic Data focuses on **structured data modeling and validation** using modern Python techniques.
-
-The objective of this module is to:
-
-- Define explicit data contracts
-- Validate input data safely
-- Prevent inconsistent or invalid states
-- Model nested and structured data cleanly
-
-This module strengthens backend fundamentals through **type-safe modeling and validation logic**.
+- Validate themselves at instantiation time
+- Enforce structural integrity
+- Centralize business rules
+- Reduce defensive boilerplate code
+- Scale from simple validation to system-level coherence
 
 ---
 
-## 🧠 Core Concepts
+## 🎯 Project Goal
 
-This module explores:
+Move from manual validation logic:
 
-- Data validation
-- Type enforcement
-- Model constraints
-- Nested data models
-- Custom validation logic
-- Clean error handling
-- Defensive programming
+```python
+if value < 0:
+    raise ValueError(...)
 
----
+to declarative, schema-driven models:
 
-## 🗂️ Project Structure
+value: int = Field(ge=0)
 
+The objective is not just to validate data,
+but to design self-contained, self-validating structures.
 
-ex0/ → Basic data models
-ex1/ → Field validation & constraints
-ex2/ → Nested models & advanced validation
+🧠 Concepts Practiced
 
+BaseModel
 
-Each exercise increases modeling complexity while reinforcing clean design principles.
+Type hints as data contracts
 
----
+Field() constraints
 
-## ⚙️ Technical Constraints
+Length validation
 
-- Python 3.10+
-- flake8 compliant
-- Clear type hints
-- Graceful error handling
-- No unnecessary external dependencies
-- Focus on structured in-memory validation
+Numeric bounds
 
----
+Regular expressions
 
-## 🧩 Learning Goals
+Enum for controlled values
 
-By completing this module, I can:
+@model_validator(mode="after")
 
-- Create explicit and predictable data contracts
-- Validate structured input safely
-- Prevent invalid data propagation
-- Design models that scale cleanly
-- Separate validation logic from business logic
+Nested models
 
----
+Cross-field validation
 
-## 🚀 Architectural Perspective
+Structured error handling with ValidationError
 
-Data modeling is not just about storing values.
+📂 Exercises
+ex0 — SpaceStation
 
-It is about:
+Basic field-level validation:
 
-- Defining rules
-- Enforcing consistency
-- Making invalid states impossible
-- Improving reliability upstream
+String length constraints
 
-Well-designed validation reduces bugs before they happen.
+Regex-based validation
 
----
+Numeric range enforcement
 
-## 🔎 Evaluation Focus
+Focus: declarative validation at attribute level.
 
-During peer review, emphasis is placed on:
+ex1 — AlienContact
 
-- Correct use of type hints
-- Validation logic clarity
-- Error handling robustness
-- Model structure design
-- Ability to explain validation decisions
+Introduces business logic rules using:
 
-This module builds strong foundations for backend development and API design.
+Enum
 
----
+Cross-field validation
+
+model_validator
+
+Focus: enforcing relational rules between attributes.
+
+ex2 — SpaceCrew
+
+Nested models and aggregated validation:
+
+CrewMember inside SpaceMission
+
+Leadership requirements
+
+Experience distribution constraints
+
+Global mission-level coherence
+
+Focus: validating system integrity, not just individual fields.
+
+🚀 How to Run
+
+Create a virtual environment and install dependencies:
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install "pydantic>=2,<3"
+
+Run each exercise individually:
+
+python3 ex0/space_station.py
+python3 ex1/alien_contact.py
+python3 ex2/space_crew.py
+
+Each script demonstrates:
+
+A valid instance
+
+An invalid instance
+
+Structured validation errors
+
+🏗️ Architectural Insight
+
+This project demonstrates a shift from:
+
+Procedural validation
+→ Declarative structural design
+
+The models act as executable schemas that guarantee consistency
+by construction.
+
+Instead of validating data everywhere,
+validation becomes part of the model definition itself.
+
+📌 Key Takeaway
+
+Well-designed data models:
+
+Reduce duplication
+
+Increase clarity
+
+Prevent invalid states
+
+Improve maintainability
+
+Structure is stronger than control flow.
