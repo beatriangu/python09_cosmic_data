@@ -18,8 +18,9 @@ value: int = Field(ge=0)
 
 The model becomes the single source of truth.
 
-🗺️ Conceptual Map
+## 🗺️ Conceptual Map
 
+```text
                 ┌────────────────────┐
                 │     BaseModel      │
                 └─────────┬──────────┘
@@ -29,9 +30,9 @@ The model becomes the single source of truth.
      Field Validation            Model Validation
      (local rules)              (relational rules)
             │                           │
-   - Length constraints         - Cross-field logic
-   - Numeric bounds             - Business coherence
-   - Regex patterns             - System integrity
+   • Length constraints          • Cross-field logic
+   • Numeric bounds              • Business coherence
+   • Regex patterns              • System integrity
             │                           │
             └─────────────┬─────────────┘
                           │
