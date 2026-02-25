@@ -2,7 +2,7 @@
 
 Designing self-validating data contracts using modern Python typing and Pydantic v2.
 
-This project explores how structured models can enforce integrity
+This project explores how structured models enforce integrity
 at the moment of instantiation — not through scattered defensive checks.
 
 🎯 Core Objective
@@ -38,15 +38,15 @@ The model becomes the single source of truth.
                           │
                  Structural Consistency
 📂 Exercise Progression
-ex0 — SpaceStation
+🔹 ex0 — SpaceStation
 
 Field-level declarative validation.
 
-ex1 — AlienContact
+🔹 ex1 — AlienContact
 
 Cross-field business rules via @model_validator.
 
-ex2 — SpaceCrew
+🔹 ex2 — SpaceCrew
 
 Nested models + system-level safety constraints.
 
