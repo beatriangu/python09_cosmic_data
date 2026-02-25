@@ -1,141 +1,82 @@
-# 🪐 Cosmic Data — Data Modeling with Pydantic v2
+🪐 Cosmic Data — Declarative Data Modeling with Pydantic v2
 
-A structured approach to **data validation and modeling** using  
-**Pydantic v2** and modern Python type hints.
+Designing self-validating data contracts using modern Python typing and Pydantic v2.
 
-This project explores how to design models that:
+This project explores how structured models can enforce integrity
+at the moment of instantiation — not through scattered defensive checks.
 
-- Validate themselves at instantiation time
-- Enforce structural integrity
-- Centralize business rules
-- Reduce defensive boilerplate code
-- Scale from simple validation to system-level coherence
+🎯 Core Objective
 
----
+Shift from procedural validation:
 
-## 🎯 Project Goal
-
-Move from manual validation logic:
-
-```python
 if value < 0:
-    raise ValueError(...)
+    raise ValueError
 
-to declarative, schema-driven models:
+to declarative schema-driven modeling:
 
 value: int = Field(ge=0)
 
-The objective is not just to validate data,
-but to design self-contained, self-validating structures.
+The model becomes the single source of truth.
 
-🧠 Concepts Practiced
-
-BaseModel
-
-Type hints as data contracts
-
-Field() constraints
-
-Length validation
-
-Numeric bounds
-
-Regular expressions
-
-Enum for controlled values
-
-@model_validator(mode="after")
-
-Nested models
-
-Cross-field validation
-
-Structured error handling with ValidationError
-
-📂 Exercises
+🗺️ Conceptual Map
+                ┌────────────────────┐
+                │     BaseModel      │
+                └─────────┬──────────┘
+                          │
+            ┌─────────────┴─────────────┐
+            │                           │
+     Field Validation            Model Validation
+     (local rules)              (relational rules)
+            │                           │
+   - Length constraints         - Cross-field logic
+   - Numeric bounds             - Business coherence
+   - Regex patterns             - System integrity
+            │                           │
+            └─────────────┬─────────────┘
+                          │
+                  Nested Models
+                          │
+                 Structural Consistency
+📂 Exercise Progression
 ex0 — SpaceStation
 
-Basic field-level validation:
-
-String length constraints
-
-Regex-based validation
-
-Numeric range enforcement
-
-Focus: declarative validation at attribute level.
+Field-level declarative validation.
 
 ex1 — AlienContact
 
-Introduces business logic rules using:
-
-Enum
-
-Cross-field validation
-
-model_validator
-
-Focus: enforcing relational rules between attributes.
+Cross-field business rules via @model_validator.
 
 ex2 — SpaceCrew
 
-Nested models and aggregated validation:
+Nested models + system-level safety constraints.
 
-CrewMember inside SpaceMission
+Each step increases structural depth.
 
-Leadership requirements
+🏗 Architectural Evolution
+Manual checks  →  Declarative constraints  →  Executable schema
+Flow control   →  Model-centric validation →  Structural guarantees
 
-Experience distribution constraints
+Validation moves:
 
-Global mission-level coherence
+From scattered logic
+To centralized contracts.
 
-Focus: validating system integrity, not just individual fields.
-
-🚀 How to Run
-
-Create a virtual environment and install dependencies:
-
-python3 -m venv .venv
-source .venv/bin/activate
-pip install "pydantic>=2,<3"
-
-Run each exercise individually:
-
-python3 ex0/space_station.py
-python3 ex1/alien_contact.py
-python3 ex2/space_crew.py
-
-Each script demonstrates:
-
-A valid instance
-
-An invalid instance
-
-Structured validation errors
-
-🏗️ Architectural Insight
-
-This project demonstrates a shift from:
-
-Procedural validation
-→ Declarative structural design
-
-The models act as executable schemas that guarantee consistency
-by construction.
-
-Instead of validating data everywhere,
-validation becomes part of the model definition itself.
-
-📌 Key Takeaway
+🔎 What This Demonstrates
 
 Well-designed data models:
 
-Reduce duplication
+Enforce integrity by construction
 
-Increase clarity
+Reduce duplicated validation logic
 
-Prevent invalid states
+Improve traceability of errors
 
-Improve maintainability
+Scale from simple fields to complex systems
+
+📌 Key Insight
+
+The model is not a container.
+
+It is an executable contract.
 
 Structure is stronger than control flow.

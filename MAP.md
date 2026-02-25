@@ -1,141 +1,147 @@
-# 🪐 Python Module — Cosmic Data
-## MAP — Modelado y Validación Declarativa con Pydantic v2
 
----
+🪐 Python Module — Cosmic Data
+MAP — Modelado Declarativo y Validación Estructural con Pydantic v2
+1. Propósito del módulo
 
-## 1. Objetivo del módulo
+Este módulo introduce el modelado estructurado de datos mediante Pydantic v2, entendiendo el modelo como un contrato ejecutable.
 
-Este módulo introduce el **modelado estructurado de datos** utilizando
-**Pydantic v2** como motor de validación declarativa.
+El objetivo no es solo validar entradas, sino comprender cómo:
 
-El propósito no es únicamente validar campos,
-sino comprender cómo:
+Declarar esquemas tipados y auto-validados
 
-- Definir contratos de datos explícitos
-- Centralizar reglas de validación
-- Garantizar coherencia estructural
-- Diseñar modelos auto-validados
+Centralizar reglas estructurales y de negocio
 
-Supone una transición desde validaciones manuales con `if`
-hacia un enfoque declarativo y arquitectónico.
+Garantizar coherencia en el momento de instanciación
 
----
+Separar validación del flujo imperativo
 
-## 2. Conceptos técnicos trabajados
+Representa la transición de validaciones manuales (if, try) a un enfoque declarativo y arquitectónico.
 
-- `BaseModel`
-- Type hints como contrato estructural
-- `Field()` con restricciones:
-  - `min_length`
-  - `max_length`
-  - `ge` / `le`
-  - `pattern`
-- `Enum` para valores controlados
-- `@model_validator(mode="after")`
-- Modelos anidados
-- Validación cruzada entre campos
-- Manejo estructurado de errores (`ValidationError`)
+2. Fundamentos técnicos trabajados
 
----
+BaseModel como núcleo estructural
 
-## 3. Desglose por ejercicios
+Type hints como contrato formal
 
-### ex0 — SpaceStation
+Field() para restricciones declarativas:
 
-**Enfoque:**
-Validación a nivel de campo.
+min_length / max_length
 
-Se aplican restricciones declarativas sobre:
-- Longitud de cadenas
-- Rangos numéricos
-- Patrones mediante expresiones regulares
+ge / le
 
-**Aprendizaje clave:**
-La validación simple puede declararse directamente en la definición
-del modelo sin lógica imperativa adicional.
+pattern
 
----
+Enum como conjunto cerrado de valores
 
-### ex1 — AlienContact
+@model_validator(mode="after") para reglas cruzadas
 
-**Enfoque:**
-Reglas de negocio dependientes de múltiples campos.
+Modelos anidados
+
+Validación relacional entre entidades
+
+Gestión estructurada de errores (ValidationError)
+
+3. Progresión por ejercicios
+🔹 ex0 — SpaceStation
+
+Validación declarativa a nivel de campo
+
+Se aplican restricciones directamente en el esquema del modelo.
+
+Aprendizaje:
+
+La validación simple pertenece a la definición del dato, no al flujo de ejecución.
+
+🔹 ex1 — AlienContact
+
+Validación relacional y reglas de negocio
 
 Se introduce:
-- `Enum` para restringir tipos de contacto
-- `@model_validator(mode="after")` para validar coherencia interna
 
-Ejemplos de reglas:
-- Contactos físicos deben estar verificados
-- Contactos telepáticos requieren mínimo 3 testigos
-- Señales fuertes requieren mensaje recibido
+Enum para restringir dominios
 
-**Aprendizaje clave:**
-Las reglas relacionales pertenecen al modelo,
-no al flujo de control externo.
+@model_validator(after) para coherencia global
 
----
+Las reglas dependen de la combinación de campos:
 
-### ex2 — SpaceCrew
+Contactos físicos deben estar verificados
 
-**Enfoque:**
-Modelos anidados y validación agregada.
+Contactos telepáticos requieren mínimo 3 testigos
 
-Se modela una misión compuesta por:
-- Lista de miembros (`CrewMember`)
-- Reglas de coherencia global
+Señales fuertes requieren mensaje
 
-Reglas implementadas:
-- La misión debe incluir liderazgo
-- En misiones largas, al menos 50% del equipo debe tener experiencia
-- Todos los miembros deben estar activos
+Aprendizaje:
 
-**Aprendizaje clave:**
-La validación puede representar coherencia sistémica,
-no solo corrección individual de campos.
+Las reglas de negocio viven en el modelo, no en el controlador.
 
----
+🔹 ex2 — SpaceCrew
 
-## 4. Evolución conceptual
+Modelos anidados y coherencia sistémica
 
-Este módulo representa un cambio de enfoque:
+Se modela una entidad compuesta (SpaceMission) que contiene:
+
+Múltiples CrewMember
+
+Reglas de seguridad agregadas
+
+Validaciones globales:
+
+Presencia obligatoria de liderazgo
+
+Experiencia mínima en misiones largas
+
+Actividad obligatoria del equipo
+
+Aprendizaje:
+
+La validación puede representar integridad estructural del sistema completo.
+
+4. Evolución conceptual
 
 Antes:
-- Validación dispersa
-- Comprobaciones manuales
-- Dependencia del flujo de ejecución
+
+Validación dispersa
+
+Lógica imperativa repetitiva
+
+Dependencia del orden de ejecución
 
 Ahora:
-- Validación centralizada
-- Modelo como contrato ejecutable
-- Integridad garantizada en el momento de instanciación
 
-El modelo se convierte en el punto único de verdad.
+Validación centralizada
 
----
+Modelo como fuente única de verdad
 
-## 5. Valor arquitectónico
+Integridad garantizada en el momento de creación
 
-El uso de Pydantic permite:
+El modelo deja de ser un contenedor pasivo y pasa a ser un esquema ejecutable.
 
-- Reducción de duplicación
-- Mayor claridad estructural
-- Errores explícitos y trazables
-- Escalabilidad en sistemas reales
-- Diseño orientado a esquema
+5. Valor arquitectónico
 
-Los modelos actúan como **esquemas ejecutables**,
-garantizando consistencia desde la definición.
+Este enfoque permite:
 
----
+Reducir duplicación de lógica
 
-## 6. Conclusión
+Diseñar contratos explícitos
 
-Este módulo demuestra que:
+Detectar errores en frontera
 
-- La estructura importa más que el control de flujo.
-- Las reglas deben formar parte del modelo.
-- La validación es diseño, no parche.
+Escalar estructuras complejas
 
-Se consolida una mentalidad orientada a arquitectura,
-coherencia y contratos explícitos de datos.
+Construir sistemas coherentes desde el dato
+
+Pydantic convierte el modelo en:
+
+Una aduana estructural que impide la entrada de datos inconsistentes.
+
+6. Conclusión
+
+Este módulo consolida una mentalidad:
+
+Declarar antes que comprobar
+
+Diseñar antes que parchear
+
+Modelar antes que ejecutar
+
+La validación deja de ser defensiva y se convierte en parte del diseño.
