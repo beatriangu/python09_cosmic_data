@@ -19,6 +19,7 @@ value: int = Field(ge=0)
 The model becomes the single source of truth.
 
 🗺️ Conceptual Map
+
                 ┌────────────────────┐
                 │     BaseModel      │
                 └─────────┬──────────┘
@@ -37,6 +38,8 @@ The model becomes the single source of truth.
                   Nested Models
                           │
                  Structural Consistency
+
+
 📂 Exercise Progression
 🔹 ex0 — SpaceStation
 
